@@ -8,11 +8,3 @@ Visit http://mtpti.github.io to know about me.
 
 
 
-
-
-
-
-
-
-References :styleshout
-            technext
