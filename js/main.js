@@ -289,3 +289,15 @@
 	});		
 
 })(jQuery);
+
+document.querySelector(".button-primary").addEventListener("click", function(event) {
+    var dropdownContent = document.querySelector(".dropdown-content");
+    dropdownContent.style.display = dropdownContent.style.display === "block" ? "none" : "block";
+});
+
+document.querySelectorAll(".dropdown-content a").forEach(function(link) {
+    link.addEventListener("click", function() {
+        window.location.href = link.href; // Redirect to the selected CV
+    });
+});
+
