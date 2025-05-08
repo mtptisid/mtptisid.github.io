@@ -33,28 +33,30 @@
 
    <!-- Additional CSS for Digital Workplace Button
    ================================================== -->
-   <style>
+<style>
       .digital-workplace {
          position: fixed;
          right: 80px;
-	 height: 70px;
+         height: 70px;
          z-index: 1000;
          background-color: #000000;
          color: #ffffff;
          padding: 10px 20px;
          border-radius: 5px;
          text-decoration: none;
-         font-size: 16px;
+         font-size: 18px;
          font-weight: 700;
          display: flex;
          align-items: center;
          transition: background-color 0.3s ease, transform 0.2s ease;
       }
       .digital-workplace i {
-         margin-right: 8px;
+         margin-right: 6px;
       }
       .digital-workplace:hover {
          background-color: #333333;
+         color: #ffffff;
+         font-weight: 700;
          transform: translateY(-2px);
       }
       @media only screen and (max-width: 768px) {
@@ -62,6 +64,7 @@
             right: 60px;
             padding: 8px 15px;
             font-size: 12px;
+            height: auto;
          }
       }
    </style>
