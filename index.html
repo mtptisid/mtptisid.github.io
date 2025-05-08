@@ -298,30 +298,6 @@
 	   					<p>May 2021 - Apr 2025</p>
 	   				</div>
 
-	   				<div class="timeline-content">
-	   					<h4>NCR Corporation</h4>
-	   					<p>I have worked as an intern in the DevOps team. Developed CI/CD Road map and implementing to a Machine Learning project with both Jenkins and GitHub Actions.
-		 				   Able to automate select systems administration tasks through creation and maintenance of scripts & IaaC, configuration management tools.</p>
-	   				</div>
-
-	   			</div> <!-- /timeline-block -->
-
-	   			<div class="timeline-block">
-
-	   				<div class="timeline-ico">
-	   					<i class="fa fa-graduation-cap"></i>
-	   				</div>
-
-	   				<div class="timeline-header">
-	   					<h3>Technical Writer</h3>
-	   					<p>May 2020 - June 2020</p>
-	   				</div>
-
-	   				<div class="timeline-content">
-	   					<h4>Medium</h4>
-	   					<p>To share my knowledge and get feedback from expertise, I started contributing my work related to DevOps, Machine Learning, Artificial Intelligence through blogs on Medium.</p>
-	   				</div>
-
 	   			</div> <!-- /timeline-block -->
 
 	   			<div class="timeline-block">
@@ -836,13 +812,14 @@
    <script>
       $(document).ready(function() {
          $('#contactForm').on('submit', function(event) {
-            event.preventDefault();
-            $('#submit-loader').show();
+            event.preventDefault(); // Prevent default form submission
+            $('#message-warning').hide(); // Clear previous warnings
+            $('#submit-loader').show(); // Show loading spinner
             var formData = {
-               name: $('#contactName').val(),
-               email: $('#contactEmail').val(),
-               subject: $('#contactSubject').val() || 'Contact Form Submission',
-               message: $('#contactMessage').val(),
+               name: $('#contactName').val().trim(),
+               email: $('#contactEmail').val().trim(),
+               subject: $('#contactSubject').val().trim() || 'Contact Form Submission',
+               message: $('#contactMessage').val().trim(),
                honeypot: $('#honeypot').val()
             };
             // Client-side validation
@@ -856,7 +833,7 @@
             }
             if (!formData.email.match(/^\S+@\S+\.\S+$/)) {
                $('#submit-loader').hide();
-               $('#message-warning').text('Please enter a valid email').show();
+               $('#message-warning').text('Please enter a valid email address').show();
                setTimeout(function() {
                   $('#message-warning').fadeOut('slow');
                }, 5000);
