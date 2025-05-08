@@ -147,10 +147,9 @@
 
 
    <!-- about section
-
-   	<div class="row section-intro">
    ================================================== -->
    <section id="about">  
+   	<div class="row section-intro">
    		<div class="col-twelve">
 
    			<center><h5>About</h5>
@@ -256,7 +255,6 @@
     		</div>   		
 	</div>
 
-
    </section> <!-- /process-->    
 
 
@@ -279,12 +277,12 @@
 
    	<div class="row resume-timeline">
 
-
-   		</div>  
-
    		<div class="col-twelve resume-header">
 
    			<h2>Work Experience</h2>
+
+   		</div> <!-- /resume-header -->
+
    		<div class="col-twelve">
 
    			<div class="timeline-wrap">
@@ -306,7 +304,7 @@
 		 				   Able to automate select systems administration tasks through creation and maintenance of scripts & IaaC, configuration management tools.</p>
 	   				</div>
 
-	   			</div>  
+	   			</div> <!-- /timeline-block -->
 
 	   			<div class="timeline-block">
 
@@ -324,7 +322,7 @@
 	   					<p>To share my knowledge and get feedback from expertise, I started contributing my work related to DevOps, Machine Learning, Artificial Intelligence through blogs on Medium.</p>
 	   				</div>
 
-	   			</div> 
+	   			</div> <!-- /timeline-block -->
 
 	   			<div class="timeline-block">
 
@@ -342,12 +340,13 @@
 	   					<p>In the last three years, I’ve rapidly upskilled in software engineering, specializing in AI, machine learning, and modern web development. This growth has enabled me to deliver innovative, cutting-edge solutions across various projects</p>
 	   				</div>
 
-	   			</div> 
+	   			</div> <!-- /timeline-block -->
 
-   			</div>   			
+   			</div> <!-- /timeline-wrap -->   			
 
-   		</div>    		
-   	</div>
+   		</div> <!-- /col-twelve -->
+   		
+   	</div> <!-- /resume-timeline -->
    	
    	<div class="row resume-timeline">
 
@@ -399,15 +398,14 @@
 
 	   			<div class="timeline-block">
 
-	   				<div class="timeline-header">
-	   					<h3>Intermediate</h3>
-	   					<p>May 2013 - May 2015</p>
-	   				</div>
-
 	   				<div class="timeline-ico">
 	   					<i class="fa fa-graduation-cap"></i>
 	   				</div>
 
+	   				<div class="timeline-header">
+	   					<h3>Intermediate</h3>
+	   					<p>May 2013 - May 2015</p>
+	   				</div>
 
 	   				<div class="timeline-content">
 	   					<h4>KLE's Basavprabhu Kore PU College, Chikodi</h4>
@@ -420,22 +418,7 @@
 
    		</div> <!-- /col-twelve -->
    		
-   	</div> 
-	
-	<!-- /resume-timeline 
-   			<div class="row resume-timeline">
-   				<div class="col-twelve resume-header">
-
-   			<h2>Achievments</h2>
-
-   		</div>
-   			<center><div>	<ul style="list-style-type:none;">
-   					<li>Finalist of TechnoUtsav 2.0 conducted by Deloitte 2019</li>
-   					<li>Medal for securing Highest Marks in B. Tech 2016-2017</li>
-   				</ul></div></center>
-
-   			</div>  -->
-
+   	</div> <!-- /resume-timeline -->
 		
 	</section> <!-- /features -->
 
@@ -526,8 +509,6 @@
 	               </div>
 	        		</div> <!-- /folio-item -->     
 
-	        		
-
 	            <!-- modal popups - begin
 	            ============================================================= -->
 	            <div id="modal-01" class="popup-modal slider mfp-hide">	
@@ -610,9 +591,6 @@
 
 				   </div> <!-- /modal-04 -->
 
-
-
-
 				   <!-- modal popups - end
 	            ============================================================= -->
 
@@ -625,8 +603,6 @@
 	</section> <!-- /portfolio --> 
 
 
-	
-	
 	<!-- services Section
    ================================================== -->
 	<section id="services">
@@ -695,18 +671,12 @@
 
 			   </div> <!-- /service -->
 
-
-
-
 	      </div> <!-- /services-list -->
    		
    	</div> <!-- /services-content -->
 		
 	</section> <!-- /services -->	
 
-
-	
-	
    <!-- contact
    ================================================== -->
 	<section id="contact">
@@ -741,8 +711,11 @@
 	               </div>                       
                   <div class="form-field">
 	                 	<textarea name="contactMessage" id="contactMessage" placeholder="message" rows="10" cols="50" required=""></textarea>
-	               </div>                      
-                 <div class="form-field">
+	               </div>
+                  <div class="form-field" style="display: none;">
+                     <input name="honeypot" type="text" id="honeypot">
+                  </div>                      
+                  <div class="form-field">
                      <button class="submitform">Submit</button>
                      <div id="submit-loader">
                         <div class="text-loader">Sending...</div>                             
@@ -860,6 +833,50 @@
    <script src="js/jquery-2.1.3.min.js"></script>
    <script src="js/plugins.js"></script>
    <script src="js/main.js"></script>
+   <script>
+      $(document).ready(function() {
+         $('#contactForm').on('submit', function(event) {
+            event.preventDefault();
+            $('#submit-loader').show();
+            var formData = {
+               name: $('#contactName').val(),
+               email: $('#contactEmail').val(),
+               subject: $('#contactSubject').val() || 'Contact Form Submission',
+               message: $('#contactMessage').val(),
+               honeypot: $('#honeypot').val()
+            };
+            if (!formData.email.match(/^\S+@\S+\.\S+$/)) {
+               $('#submit-loader').hide();
+               $('#message-warning').text('Please enter a valid email').show();
+               setTimeout(function() {
+                  $('#message-warning').fadeOut('slow');
+               }, 5000);
+               return;
+            }
+            $.ajax({
+               url: 'https://portpoliosid.onrender.com/contact',
+               type: 'POST',
+               contentType: 'application/json',
+               data: JSON.stringify(formData),
+               success: function(response) {
+                  $('#submit-loader').hide();
+                  $('#message-success').show();
+                  $('#contactForm')[0].reset();
+                  setTimeout(function() {
+                     $('#message-success').fadeOut('slow');
+                  }, 5000);
+               },
+               error: function(xhr, status, error) {
+                  $('#submit-loader').hide();
+                  $('#message-warning').text('Error sending message: ' + (xhr.responseJSON?.detail || error)).show();
+                  setTimeout(function() {
+                     $('#message-warning').fadeOut('slow');
+                  }, 5000);
+               }
+            });
+         });
+      });
+   </script>
 
 </body>
 
