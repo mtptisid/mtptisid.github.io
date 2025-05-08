@@ -845,9 +845,26 @@
                message: $('#contactMessage').val(),
                honeypot: $('#honeypot').val()
             };
+            // Client-side validation
+            if (!formData.name || formData.name.length < 2) {
+               $('#submit-loader').hide();
+               $('#message-warning').text('Please enter a valid name (at least 2 characters)').show();
+               setTimeout(function() {
+                  $('#message-warning').fadeOut('slow');
+               }, 5000);
+               return;
+            }
             if (!formData.email.match(/^\S+@\S+\.\S+$/)) {
                $('#submit-loader').hide();
                $('#message-warning').text('Please enter a valid email').show();
+               setTimeout(function() {
+                  $('#message-warning').fadeOut('slow');
+               }, 5000);
+               return;
+            }
+            if (!formData.message) {
+               $('#submit-loader').hide();
+               $('#message-warning').text('Please enter a message').show();
                setTimeout(function() {
                   $('#message-warning').fadeOut('slow');
                }, 5000);
@@ -866,9 +883,10 @@
                      $('#message-success').fadeOut('slow');
                   }, 5000);
                },
-               error: function(xhr, status, error) {
+               error: function(xhr) {
                   $('#submit-loader').hide();
-                  $('#message-warning').text('Error sending message: ' + (xhr.responseJSON?.detail || error)).show();
+                  var errorMessage = xhr.responseJSON?.detail || 'Failed to send message. Please try again later.';
+                  $('#message-warning').text(errorMessage).show();
                   setTimeout(function() {
                      $('#message-warning').fadeOut('slow');
                   }, 5000);
