@@ -810,69 +810,80 @@
    <script src="js/plugins.js"></script>
    <script src="js/main.js"></script>
    <script>
-      $(document).ready(function() {
-         $('#contactForm').on('submit', function(event) {
-            event.preventDefault(); // Prevent default form submission
-            $('#message-warning').hide(); // Clear previous warnings
-            $('#submit-loader').show(); // Show loading spinner
-            var formData = {
-               name: $('#contactName').val().trim(),
-               email: $('#contactEmail').val().trim(),
-               subject: $('#contactSubject').val().trim() || 'Contact Form Submission',
-               message: $('#contactMessage').val().trim(),
-               honeypot: $('#honeypot').val()
-            };
-            // Client-side validation
-            if (!formData.name || formData.name.length < 2) {
-               $('#submit-loader').hide();
-               $('#message-warning').text('Please enter a valid name (at least 2 characters)').show();
-               setTimeout(function() {
-                  $('#message-warning').fadeOut('slow');
-               }, 5000);
-               return;
-            }
-            if (!formData.email.match(/^\S+@\S+\.\S+$/)) {
-               $('#submit-loader').hide();
-               $('#message-warning').text('Please enter a valid email address').show();
-               setTimeout(function() {
-                  $('#message-warning').fadeOut('slow');
-               }, 5000);
-               return;
-            }
-            if (!formData.message) {
-               $('#submit-loader').hide();
-               $('#message-warning').text('Please enter a message').show();
-               setTimeout(function() {
-                  $('#message-warning').fadeOut('slow');
-               }, 5000);
-               return;
-            }
-            $.ajax({
-               url: 'https://portpoliosid.onrender.com/contact',
-               type: 'POST',
-               contentType: 'application/json',
-               data: JSON.stringify(formData),
-               success: function(response) {
-                  $('#submit-loader').hide();
-                  $('#message-success').show();
-                  $('#contactForm')[0].reset();
-                  setTimeout(function() {
-                     $('#message-success').fadeOut('slow');
-                  }, 5000);
-               },
-               error: function(xhr) {
-                  $('#submit-loader').hide();
-                  var errorMessage = xhr.responseJSON?.detail || 'Failed to send message. Please try again later.';
-                  $('#message-warning').text(errorMessage).show();
-                  setTimeout(function() {
-                     $('#message-warning').fadeOut('slow');
-                  }, 5000);
-               }
-            });
-         });
-      });
-   </script>
+  	$(document).ready(function() {
+    	// Wake up the backend
+    	fetch('https://portpoliosid.onrender.com/api/ai_chat/')
+      	.then(response => {
+       	 	if (!response.ok) {
+         	 console.error('Failed to wake up backend:', response.status);
+        	}
+      	})
+     	 .catch(error => {
+       	 console.error('Error waking up backend:', error);
+      	});
 
+    	// Existing form submission handler
+    	$('#contactForm').on('submit', function(event) {
+      	event.preventDefault(); // Prevent default form submission
+     	 $('#message-warning').hide(); // Clear previous warnings
+      	$('#submit-loader').show(); // Show loading spinner
+      	var formData = {
+        	name: $('#contactName').val().trim(),
+        	email: $('#contactEmail').val().trim(),
+        	subject: $('#contactSubject').val().trim() || 'Contact Form Submission',
+        	message: $('#contactMessage').val().trim(),
+        	honeypot: $('#honeypot').val()
+      	};
+      // Client-side validation
+      	if (!formData.name || formData.name.length < 2) {
+        	$('#submit-loader').hide();
+        	$('#message-warning').text('Please enter a valid name (at least 2 characters)').show();
+        	setTimeout(function() {
+          	$('#message-warning').fadeOut('slow');
+       		 }, 5000);
+        	return;
+      	}
+      if (!formData.email.match(/^\S+@\S+\.\S+$/)) {
+        $('#submit-loader').hide();
+        $('#message-warning').text('Please enter a valid email address').show();
+        setTimeout(function() {
+          $('#message-warning').fadeOut('slow');
+        }, 5000);
+        return;
+      }
+      if (!formData.message) {
+        $('#submit-loader').hide();
+        $('#message-warning').text('Please enter a message').show();
+        setTimeout(function() {
+          $('#message-warning').fadeOut('slow');
+        }, 5000);
+        return;
+      }
+      $.ajax({
+        url: 'https://portpoliosid.onrender.com/contact',
+        type: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify(formData),
+        success: function(response) {
+          $('#submit-loader').hide();
+          $('#message-success').show();
+          $('#contactForm')[0].reset();
+          setTimeout(function() {
+            $('#message-success').fadeOut('slow');
+          }, 5000);
+        },
+        error: function(xhr) {
+          $('#submit-loader').hide();
+          var errorMessage = xhr.responseJSON?.detail || 'Failed to send message. Please try again later.';
+          $('#message-warning').text(errorMessage).show();
+          setTimeout(function() {
+            $('#message-warning').fadeOut('slow');
+          }, 5000);
+        }
+      });
+    });
+  });
+</script>
 </body>
 
 </html>
