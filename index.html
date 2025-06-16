@@ -31,7 +31,7 @@
 	================================================== -->
 	<link rel="icon" type="image/png" href="favicon.png">
 
-   <!-- Additional CSS for Digital Workplace Button
+   <!-- Additional CSS for Digital Workplace Button and Tooltips
    ================================================== -->
 <style>
       .digital-workplace {
@@ -72,6 +72,51 @@
             width: fit-content;
          }
       }
+      /* Tooltip styles for intro-social links */
+      .intro-social li {
+         position: relative;
+         display: inline-block;
+      }
+      .intro-social li a {
+         position: relative;
+      }
+      .intro-social li a::after {
+         content: attr(data-tooltip);
+         position: absolute;
+         bottom: 100%;
+         left: 50%;
+         transform: translateX(-50%);
+         background-color: #333;
+         color: #fff;
+         padding: 5px 10px;
+         border-radius: 4px;
+         font-size: 12px;
+         white-space: nowrap;
+         opacity: 0;
+         visibility: hidden;
+         transition: opacity 0.3s ease, visibility 0.3s ease;
+         z-index: 1000;
+      }
+      .intro-social li a:hover::after {
+         opacity: 1;
+         visibility: visible;
+      }
+      .intro-social li a::before {
+         content: '';
+         position: absolute;
+         bottom: 100%;
+         left: 50%;
+         transform: translateX(-50%);
+         border: 5px solid transparent;
+         border-top-color: #333;
+         opacity: 0;
+         visibility: hidden;
+         transition: opacity 0.3s ease, visibility 0.3s ease;
+      }
+      .intro-social li a:hover::before {
+         opacity: 1;
+         visibility: visible;
+      }
    </style>
 
 </head>
@@ -98,7 +143,6 @@
 						<li><a class="smoothscroll"  href="#portfolio" title="">Projects</a></li>
 						<li><a class="smoothscroll"  href="#services" title="">Interests</a></li>					
 						<li><a class="smoothscroll"  href="#contact" title="">Contact</a></li>	
-						
 					</ul>
 				</nav>
 				
@@ -125,7 +169,6 @@
 
 	   			<p class="intro-position">
 	   				<span>AI/ML Enthusiast</span>
-	   				
 	   			</p>
 
 	   			<a class="button stroke smoothscroll" href="#about" title="">More About Me</a>
@@ -136,17 +179,16 @@
    	</div> <!-- /intro-content --> 
 
    	<ul class="intro-social">   
-	 <li><a href="https://siddharamayya.in"><i class="fa fa-globe"></i></a></li>
-	 <li><a href="https://siddharamayya.in/projects"><i class="fa fa-briefcase"></i></a></li>
-         <li><a href="https://www.linkedin.com/in/siddharamayya-mathapati"><i class="fa fa-linkedin"></i></a></li>
-         <li><a href="https://medium.com/@msidrm455"><i class="fa fa-medium"></i></a></li>
-         <li><a href="https://github.com/mtptisid"><i class="fa fa-github"></i></a></li>
-		 <li><a href="https://www.facebook.com/siddram.mathpati.5"><i class="fa fa-facebook"></i></a></li> 
-		<li><a href="https://www.instagram.com/its_5id"><i class="fa fa-instagram"></i></a></li> 
+         <li><a href="https://siddharamayya.in" data-tooltip="Visit my portfolio"><i class="fa fa-globe"></i></a></li>
+         <li><a href="https://siddharamayya.in/projects" data-tooltip="View my projects"><i class="fa fa-briefcase"></i></a></li>
+         <li><a href="https://www.linkedin.com/in/siddharamayya-mathapati" data-tooltip="Connect on LinkedIn"><i class="fa fa-linkedin"></i></a></li>
+         <li><a href="https://medium.com/@msidrm455" data-tooltip="Read my Medium articles"><i class="fa fa-medium"></i></a></li>
+         <li><a href="https://github.com/mtptisid" data-tooltip="Explore my GitHub"><i class="fa fa-github"></i></a></li>
+         <li><a href="https://www.facebook.com/siddram.mathpati.5" data-tooltip="Follow me on Facebook"><i class="fa fa-facebook"></i></a></li> 
+         <li><a href="https://www.instagram.com/its_5id" data-tooltip="Follow me on Instagram"><i class="fa fa-instagram"></i></a></li> 
       </ul> <!-- /intro-social -->      	
 
    </section> <!-- /intro -->
-
 
    <!-- about section
    ================================================== -->
@@ -252,13 +294,12 @@
                 	<a href="images/Siddharamayya_M_2024.pdf" title="CV 2024">CV 2024</a>
                 	<a href="images/Mathapati_Siddharamayya_Devops.pdf" title="CV 2023">CV Devops</a>
                 	<!-- Add more CV links here -->
-            		</div>
+            	</div>
         	</div>
-    		</div>   		
+    	</div>   		
 	</div>
 
    </section> <!-- /process-->    
-
 
    <!-- resume Section
    ================================================== -->
@@ -271,7 +312,7 @@
    			<h1>More of my credentials.</h1>
 
    			<p class="lead">
-   				Completed  certification courses on Python Programming, Introduction to Machine Learning, Networks and Systems, Web Development.
+   				Completed certification courses on Python Programming, Introduction to Machine Learning, Networks and Systems, Web Development.
    			</p>
 
    		</div>   		
@@ -400,7 +441,6 @@
 		
 	</section> <!-- /features -->
 
-
 	<!-- Portfolio Section
    ================================================== -->
 	<section id="portfolio">
@@ -497,7 +537,7 @@
 
 					   <div class="description-box">
 					      <h4>Robust Web Development</h4>		      
-					      <p>I  specialize in crafting responsive and user-friendly web applications, blending modern design with seamless functionality. My web development projects focus on delivering intuitive user experiences using the latest technologies.</p>
+					      <p>I specialize in crafting responsive and user-friendly web applications, blending modern design with seamless functionality. My web development projects focus on delivering intuitive user experiences using the latest technologies.</p>
 
 					      <div class="categories">Web development with all new technologies</div>			               
 					   </div>
@@ -539,7 +579,7 @@
 					      <h4>Machine Learing Projects</h4>		      
 					      <p>I have created machine learning projects that focus on building predictive models and intelligent algorithms. My work includes developing solutions that can analyze data patterns and make accurate decisions in real-time.</p>
 
-					      <div class="categories">Machine Learning  with all the latest technologies</div>			               
+					      <div class="categories">Machine Learning with all the latest technologies</div>			               
 					   </div>
 
 			         <div class="link-box">
@@ -559,7 +599,7 @@
 					      <h4>Generative AI Projects</h4>		      
 					      <p>I have worked on generative AI projects that explore the creation of new, innovative content using advanced algorithms. My focus is on developing models that generate realistic text, images, and data, pushing the boundaries of creativity and automation.</p>
 
-					      <div class="categories"> Genarative AI projects for future.</div>			               
+					      <div class="categories">Generative AI projects for future.</div>			               
 					   </div>
 
 			         <div class="link-box">
@@ -579,7 +619,6 @@
    	</div> <!-- /portfolio-content --> 
 		
 	</section> <!-- /portfolio --> 
-
 
 	<!-- services Section
    ================================================== -->
@@ -761,8 +800,6 @@
    			<h5>Call Me At</h5>
 
    			<p>Phone: (+91) 97406 71620<br>
-
-			   	
 			   </p>
 
    		</div>
@@ -771,10 +808,8 @@
 		
 	</section> <!-- /contact -->
 
-
    <!-- footer
    ================================================== -->
-
    <footer>
      	<div class="row">
 
@@ -782,9 +817,9 @@
 
      			<ul class="footer-social">        
 			      <li><a href="https://www.linkedin.com/in/siddharamayya-mathapati"><i class="fa fa-linkedin"></i></a></li>
-         <li><a href="https://medium.com/"><i class="fa fa-medium"></i></a></li>
-         <li><a href="https://github.com/mtptisid"><i class="fa fa-github"></i></a></li>
-	 <li><a href="https://www.instagram.com/its_5id"><i class="fa fa-facebook"></i></a></li>
+            <li><a href="https://medium.com/"><i class="fa fa-medium"></i></a></li>
+            <li><a href="https://github.com/mtptisid"><i class="fa fa-github"></i></a></li>
+            <li><a href="https://www.instagram.com/its_5id"><i class="fa fa-facebook"></i></a></li>
 			   </ul> 
 	      		
 	      </div>
@@ -820,7 +855,7 @@
          	 console.error('Failed to wake up backend:', response.status);
         	}
       	})
-     	 .catch(error => {
+      	.catch(error => {
        	 console.error('Error waking up backend:', error);
       	});
 
@@ -836,7 +871,7 @@
         	message: $('#contactMessage').val().trim(),
         	honeypot: $('#honeypot').val()
       	};
-      // Client-side validation
+      	// Client-side validation
       	if (!formData.name || formData.name.length < 2) {
         	$('#submit-loader').hide();
         	$('#message-warning').text('Please enter a valid name (at least 2 characters)').show();
@@ -845,47 +880,47 @@
        		 }, 5000);
         	return;
       	}
-      if (!formData.email.match(/^\S+@\S+\.\S+$/)) {
-        $('#submit-loader').hide();
-        $('#message-warning').text('Please enter a valid email address').show();
-        setTimeout(function() {
-          $('#message-warning').fadeOut('slow');
-        }, 5000);
-        return;
-      }
-      if (!formData.message) {
-        $('#submit-loader').hide();
-        $('#message-warning').text('Please enter a message').show();
-        setTimeout(function() {
-          $('#message-warning').fadeOut('slow');
-        }, 5000);
-        return;
-      }
-      $.ajax({
-        url: 'https://portpoliosid.onrender.com/contact',
-        type: 'POST',
-        contentType: 'application/json',
-        data: JSON.stringify(formData),
-        success: function(response) {
-          $('#submit-loader').hide();
-          $('#message-success').show();
-          $('#contactForm')[0].reset();
-          setTimeout(function() {
-            $('#message-success').fadeOut('slow');
-          }, 5000);
-        },
-        error: function(xhr) {
-          $('#submit-loader').hide();
-          var errorMessage = xhr.responseJSON?.detail || 'Failed to send message. Please try again later.';
-          $('#message-warning').text(errorMessage).show();
-          setTimeout(function() {
-            $('#message-warning').fadeOut('slow');
-          }, 5000);
-        }
-      });
-    });
-  });
-</script>
+      	if (!formData.email.match(/^\S+@\S+\.\S+$/)) {
+        	$('#submit-loader').hide();
+        	$('#message-warning').text('Please enter a valid email address').show();
+        	setTimeout(function() {
+          	$('#message-warning').fadeOut('slow');
+        	}, 5000);
+        	return;
+      	}
+      	if (!formData.message) {
+        	$('#submit-loader').hide();
+        	$('#message-warning').text('Please enter a message').show();
+        	setTimeout(function() {
+          	$('#message-warning').fadeOut('slow');
+        	}, 5000);
+        	return;
+      	}
+      	$.ajax({
+        	url: 'https://portpoliosid.onrender.com/contact',
+        	type: 'POST',
+        	contentType: 'application/json',
+        	data: JSON.stringify(formData),
+        	success: function(response) {
+          	$('#submit-loader').hide();
+          	$('#message-success').show();
+          	$('#contactForm')[0].reset();
+          	setTimeout(function() {
+            	$('#message-success').fadeOut('slow');
+          	}, 5000);
+        	},
+        	error: function(xhr) {
+          	$('#submit-loader').hide();
+          	var errorMessage = xhr.responseJSON?.detail || 'Failed to send message. Please try again later.';
+          	$('#message-warning').text(errorMessage).show();
+          	setTimeout(function() {
+            	$('#message-warning').fadeOut('slow');
+          	}, 5000);
+        	}
+      	});
+    	});
+  	});
+	</script>
 </body>
 
 </html>
