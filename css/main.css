@@ -515,7 +515,7 @@ input[type="number"],
 input[type="search"],
 input[type="text"],
 input[type="tel"],
-input[type="url"],
+input[type=""],
 input[type="password"],
 textarea,
 select {
@@ -590,7 +590,7 @@ input[type="number"]:focus,
 input[type="search"]:focus,
 input[type="text"]:focus,
 input[type="tel"]:focus,
-input[type="url"]:focus,
+input[type=""]:focus,
 input[type="password"]:focus,
 textarea:focus,
 select:focus {
@@ -1119,7 +1119,7 @@ header .logo a {
 	color: transparent;
 	width: 92px;
 	height: 15px;
-	background: url("../images/logo.png") no-repeat center;
+	background: ("../images/logo.png") no-repeat center;
 	background-size: 92px 15px;
 }
 
@@ -1294,7 +1294,7 @@ header .logo a {
  * ------------------------------------------------------------------- 
  */
 #intro {
-	background: #151515 url(../images/IMG_9260.jpg) no-repeat center top;
+	background: #151515 url(../images/3FAF2E0C-8E01-4F36-85A5-B9CC97CF4E33.png) no-repeat center top;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	background-size: cover;
